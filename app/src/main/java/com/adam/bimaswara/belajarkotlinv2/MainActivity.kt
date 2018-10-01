@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
 
     class MainActivityUI : AnkoComponent<MainActivity> {
         override fun createView(ui: AnkoContext<MainActivity>): View {
-
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            //ini sungguh berarti
         }
 
     }

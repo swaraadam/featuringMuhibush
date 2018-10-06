@@ -23,4 +23,17 @@
         <item>@drawable/img_mu</item>
     </array>
 
+
+
+    <array name="club_info">
+        <item>detail Chelsea FC</item>
+        <item>detail AC Milan FC</item>
+        <item>detail Arsenal FC</item>
+        <item>detail Barcelona FC</item>
+        <item>detail Real Madrid FC</item>
+        <item>detail Bayern Munchen FC</item>
+        <item>detail Manchester City FC</item>
+        <item>detail Manchester United FC</item>
+    </array>
+
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.abc_activity_chooser_view_list_item.view.*
@@ -14,40 +15,30 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private var items: MutableList<Item> = mutableListOf()
+    var footballItem : MutableList<Item> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivityUI().setContentView(this)
+        setContentView(R.layout.activity_main)
 
         initData()
 
-        club_list.layoutManager = LinearLayoutManager(this)
-        club_list.adapter = RecyclerViewAdapter(this, items){
-            val toast = Toast.makeText(applicationContext,it.name,Toast.LENGTH_SHORT)
-            toast.show()
+        verticalLayout {
+            lparams(matchParent, matchParent)
+            orientation = LinearLayout.VERTICAL
+
+            recyclerView {
+                lparams(matchParent, matchParent)
+                layoutManager = LinearLayoutManager(context)
+                adapter = RecyclerViewAdapter(this,Item){
+                    startActivity<SecondActivity>(SecondActivity.POSITIONEXTRA to it)
+                    val toast = Toast.makeText(context, it.nama, Toast.LENGTH_SHORT)
+                    toast.show()
+                }
+            }
         }
     }
 
-    class MainActivityUI : AnkoComponent<MainActivity> {
-        override fun createView(ui: AnkoContext<MainActivity>): View {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            //ini sungguh berarti
-        }
-
-    }
-
-    private fun initData(){
-        val name = resources.getStringArray(R.array.club_name)
-        val image = resources.obtainTypedArray(R.array.club_image)
-        items.clear()
-
-        for(i in name.indices){
-            items.add(Item(name[i],image.getResourceId(i,0)))
-        }
-
-        image.recycle()
-    }
 }
 
 
